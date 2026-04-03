@@ -1,63 +1,25 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: black;
-  overflow-y: scroll;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GhostGram Reels</title>
 
-/* REELS CONTAINER */
-#feed {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-}
+  <!-- IMPORTANT -->
+  <link rel="stylesheet" href="./style.css">
+</head>
 
-/* EACH CARD */
-.reel {
-  height: 100vh;
-  width: 100%;
-  position: relative;
-  scroll-snap-align: start;
-}
+<body>
 
-.reel img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+  <div id="feed"></div>
 
-/* OVERLAY */
-.overlay {
-  position: absolute;
-  bottom: 80px;
-  left: 15px;
-  color: white;
-}
+  <div class="actions">
+    <button onclick="like()">❤️ <span id="likesCount">0</span></button>
+    <button onclick="saveProfile()">💾</button>
+    <button onclick="shareProfile()">🔗</button>
+  </div>
 
-.overlay h2 {
-  margin: 0;
-}
+  <script src="./script.js"></script>
 
-.overlay p {
-  margin: 5px 0;
-}
-
-/* FLOATING BUTTONS */
-.actions {
-  position: fixed;
-  right: 10px;
-  bottom: 100px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.actions button {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  border: none;
-  font-size: 16px;
-  background: rgba(255,255,255,0.2);
-  color: white;
-}
+</body>
+</html>
