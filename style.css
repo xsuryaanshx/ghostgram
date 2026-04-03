@@ -1,44 +1,67 @@
 body {
-  background: #000;
-  color: white;
+  margin: 0;
+  background: linear-gradient(135deg, #0f172a, #020617);
   font-family: Arial, sans-serif;
+  color: white;
   display: flex;
   justify-content: center;
 }
 
 .container {
-  width: 400px;
+  width: 420px;
   padding: 20px;
 }
 
 h1 {
   text-align: center;
+  margin-bottom: 10px;
 }
 
 button {
   width: 100%;
-  padding: 12px;
-  background: #22c55e;
+  padding: 14px;
   border: none;
-  border-radius: 8px;
-  margin: 20px 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #22c55e, #4ade80);
+  color: black;
   font-weight: bold;
   cursor: pointer;
+  transition: 0.3s;
 }
 
+button:hover {
+  transform: scale(1.03);
+}
+
+/* GLASS EFFECT */
+.glass {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 15px;
+}
+
+/* HEADER */
 .header {
   display: flex;
-  gap: 20px;
+  gap: 15px;
+  margin-top: 20px;
 }
 
-.header img {
+.avatar {
   width: 80px;
   height: 80px;
   border-radius: 50%;
+  border: 2px solid #22c55e;
 }
 
-.info {
-  flex: 1;
+.info h2 {
+  margin: 0;
+}
+
+.verified {
+  color: #22c55e;
+  font-size: 14px;
 }
 
 .stats {
@@ -47,31 +70,66 @@ button {
   margin-top: 10px;
 }
 
+/* STORIES */
+.stories {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  overflow-x: auto;
+}
+
+.story {
+  min-width: 60px;
+  text-align: center;
+}
+
+.story img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #22c55e;
+}
+
+/* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-  margin-top: 20px;
-}
-
-.grid img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
+  gap: 6px;
 }
 
 .post {
   position: relative;
+  overflow: hidden;
 }
 
+.post img {
+  width: 100%;
+  transition: 0.3s;
+}
+
+.post:hover img {
+  transform: scale(1.1);
+}
+
+/* LIKE OVERLAY */
 .likes {
   position: absolute;
   bottom: 5px;
   left: 5px;
   font-size: 12px;
   background: rgba(0,0,0,0.6);
-  padding: 2px 5px;
-  border-radius: 5px;
+  padding: 3px 6px;
+  border-radius: 6px;
+}
+
+/* ANIMATION */
+.fade-in {
+  animation: fade 0.6s ease-in-out;
+}
+
+@keyframes fade {
+  from {opacity: 0; transform: translateY(10px);}
+  to {opacity: 1; transform: translateY(0);}
 }
 
 .hidden {
