@@ -1,6 +1,6 @@
 const names = ["Samantha Lee", "Ava Sharma", "Elena Rossi", "Mia Collins"];
 const bios = [
-  "✨ soft life | coffee",
+  "✨ soft life",
   "🌸 dream life builder",
   "📍 italy lifestyle",
   "💫 aesthetic vibes"
@@ -13,10 +13,8 @@ const categories = [
   "lifestyle,woman"
 ];
 
-let currentProfile = null;
 let likes = 0;
-
-let savedProfiles = JSON.parse(localStorage.getItem("saved")) || [];
+let currentProfile = null;
 
 function random(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -30,127 +28,62 @@ function generateProfile() {
   const category = random(categories);
 
   return {
-    id: Date.now(),
     name: random(names),
     bio: random(bios),
-    img: `https://loremflickr.com/400/500/${category}?random=${Math.random()}`,
+    img: `https://loremflickr.com/400/700/${category}?random=${Math.random()}`,
     followers: randomNumber(1000, 100000)
   };
 }
 
-function renderCard(profile) {
-  return `
-    <div class="card" id="card">
-      <img src="${profile.img}" />
-      <h2>${profile.name} ✔</h2>
-      <p>${profile.bio}</p>
-      <p>👥 ${profile.followers} followers</p>
+function createReel() {
+  const p = generateProfile();
+
+  currentProfile = p;
+
+  const reel = document.createElement("div");
+  reel.className = "reel";
+
+  reel.innerHTML = `
+    <img src="${p.img}" />
+    <div class="overlay">
+      <h2>${p.name} ✔</h2>
+      <p>${p.bio}</p>
+      <p>👥 ${p.followers}</p>
     </div>
   `;
+
+  return reel;
 }
 
-function loadNewCard() {
-  currentProfile = generateProfile();
-  likes = 0;
+function loadInitial() {
+  const feed = document.getElementById("feed");
 
-  document.getElementById("likesCount").innerText = likes;
-  document.getElementById("cardContainer").innerHTML = renderCard(currentProfile);
-
-  enableDrag();
-}
-
-function swipe(direction) {
-  const card = document.getElementById("card");
-  card.classList.add(direction === "left" ? "swipe-left" : "swipe-right");
-
-  setTimeout(loadNewCard, 300);
+  for (let i = 0; i < 5; i++) {
+    feed.appendChild(createReel());
+  }
 }
 
 function like() {
   likes++;
-  const el = document.getElementById("likesCount");
-
-  el.innerText = likes;
-  el.classList.add("like-anim");
-
-  setTimeout(() => el.classList.remove("like-anim"), 300);
+  document.getElementById("likesCount").innerText = likes;
 }
 
 function saveProfile() {
-  savedProfiles.push(currentProfile);
-  localStorage.setItem("saved", JSON.stringify(savedProfiles));
-  renderSaved();
+  alert("Saved (demo)");
 }
 
 function shareProfile() {
-  const text = `${currentProfile.name} - ${currentProfile.bio}`;
-  navigator.clipboard.writeText(text);
-  alert("Copied profile!");
+  navigator.clipboard.writeText("GhostGram profile 🔥");
+  alert("Copied!");
 }
 
-function renderSaved() {
-  let html = "";
+/* INFINITE SCROLL */
+document.getElementById("feed").addEventListener("scroll", () => {
+  const feed = document.getElementById("feed");
 
-  savedProfiles.forEach(p => {
-    html += `
-      <div class="saved-card">
-        <img src="${p.img}" />
-        <p>${p.name}</p>
-      </div>
-    `;
-  });
-
-  document.getElementById("saved").innerHTML = html;
-}
-
-/* MOBILE + DESKTOP DRAG */
-function enableDrag() {
-  const card = document.getElementById("card");
-
-  let startX = 0;
-  let currentX = 0;
-  let isDragging = false;
-
-  card.addEventListener("touchstart", e => {
-    isDragging = true;
-    startX = e.touches[0].clientX;
-  });
-
-  card.addEventListener("touchmove", e => {
-    if (!isDragging) return;
-    currentX = e.touches[0].clientX;
-    let moveX = currentX - startX;
-    card.style.transform = `translateX(${moveX}px) rotate(${moveX/10}deg)`;
-  });
-
-  card.addEventListener("touchend", () => {
-    handleSwipe(currentX - startX);
-    isDragging = false;
-  });
-
-  card.addEventListener("mousedown", e => {
-    isDragging = true;
-    startX = e.clientX;
-
-    document.onmousemove = e2 => {
-      currentX = e2.clientX;
-      let moveX = currentX - startX;
-      card.style.transform = `translateX(${moveX}px) rotate(${moveX/10}deg)`;
-    };
-
-    document.onmouseup = e3 => {
-      handleSwipe(e3.clientX - startX);
-      isDragging = false;
-      document.onmousemove = null;
-    };
-  });
-
-  function handleSwipe(diff) {
-    if (diff > 100) swipe("right");
-    else if (diff < -100) swipe("left");
-    else card.style.transform = "";
+  if (feed.scrollTop + feed.clientHeight >= feed.scrollHeight - 50) {
+    feed.appendChild(createReel());
   }
-}
+});
 
-renderSaved();
-loadNewCard();
+loadInitial();
