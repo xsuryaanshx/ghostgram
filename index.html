@@ -12,38 +12,18 @@
 
   <div class="container">
 
-    <h1>👩‍💻 Ghost Influencer</h1>
+    <h1>🔥 Ghost Influencer</h1>
 
-    <button onclick="generate()">Generate Profile</button>
+    <div id="cardContainer"></div>
 
-    <div id="profile" class="hidden fade-in">
-
-      <!-- PROFILE HEADER -->
-      <div class="header glass">
-
-        <img id="profileImg" class="avatar"/>
-
-        <div class="info">
-          <h2 id="name">
-            Samantha <span class="verified">✔</span>
-          </h2>
-          <p id="bio"></p>
-
-          <div class="stats">
-            <div><strong id="postsCount">0</strong> posts</div>
-            <div><strong id="followers">0</strong> followers</div>
-            <div><strong id="following">0</strong> following</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- STORIES -->
-      <div class="stories" id="stories"></div>
-
-      <!-- POSTS -->
-      <div class="grid" id="grid"></div>
-
+    <div class="actions">
+      <button onclick="swipe('left')">❌ Skip</button>
+      <button onclick="saveProfile()">💾 Save</button>
+      <button onclick="swipe('right')">❤️ Like</button>
     </div>
+
+    <h2>Saved Profiles</h2>
+    <div id="saved" class="saved-grid"></div>
 
   </div>
 
