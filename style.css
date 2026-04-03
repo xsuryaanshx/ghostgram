@@ -12,167 +12,62 @@ body {
   padding: 20px;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-button {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(90deg, #22c55e, #4ade80);
-  color: black;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.03);
-}
-
-/* GLASS EFFECT */
-.glass {
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  padding: 15px;
-}
-
-/* HEADER */
-.header {
-  display: flex;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  border: 2px solid #22c55e;
-}
-
-.info h2 {
-  margin: 0;
-}
-
-.verified {
-  color: #22c55e;
-  font-size: 14px;
-}
-
-.stats {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
-/* STORIES */
-.stories {
-  display: flex;
-  gap: 10px;
-  margin: 20px 0;
-  overflow-x: auto;
-}
-
-.story {
-  min-width: 60px;
-  text-align: center;
-}
-
-.story img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: 2px solid #22c55e;
-}
-
-/* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-}
-
-.post {
-  position: relative;
-  overflow: hidden;
-}
-
-.post img {
-  width: 100%;
-  transition: 0.3s;
-}
-
-.post:hover img {
-  transform: scale(1.1);
-}
-
-/* LIKE OVERLAY */
-.likes {
-  position: absolute;
-  bottom: 5px;
-  left: 5px;
-  font-size: 12px;
-  background: rgba(0,0,0,0.6);
-  padding: 3px 6px;
-  border-radius: 6px;
-}
-
-/* ANIMATION */
-.fade-in {
-  animation: fade 0.6s ease-in-out;
-}
-
-@keyframes fade {
-  from {opacity: 0; transform: translateY(10px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-.hidden {
-  display: none;
-}
-
 /* CARD */
 #cardContainer {
   position: relative;
-  height: 500px;
+  height: 520px;
 }
 
 .card {
   position: absolute;
   width: 100%;
   background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   border-radius: 15px;
-  padding: 20px;
+  padding: 15px;
   transition: 0.4s;
+  cursor: grab;
 }
 
-/* SWIPE ANIMATIONS */
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.card h2 {
+  margin: 10px 0 5px;
+}
+
+.card p {
+  margin: 5px 0;
+}
+
+/* SWIPE */
 .swipe-left {
-  transform: translateX(-150%) rotate(-20deg);
+  transform: translateX(-150%) rotate(-25deg);
   opacity: 0;
 }
 
 .swipe-right {
-  transform: translateX(150%) rotate(20deg);
+  transform: translateX(150%) rotate(25deg);
   opacity: 0;
 }
 
-/* ACTION BUTTONS */
+/* ACTIONS */
 .actions {
   display: flex;
   justify-content: space-between;
-  margin: 20px 0;
+  margin: 15px 0;
 }
 
 .actions button {
   flex: 1;
-  margin: 5px;
+  margin: 3px;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 /* SAVED */
@@ -192,4 +87,15 @@ button:hover {
 .saved-card img {
   width: 100%;
   border-radius: 10px;
+}
+
+/* LIKE ANIMATION */
+.like-anim {
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
 }
