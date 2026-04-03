@@ -1,120 +1,62 @@
 body {
   margin: 0;
-  background: linear-gradient(135deg, #0f172a, #020617);
   font-family: Arial, sans-serif;
-  color: white;
-  display: flex;
-  justify-content: center;
+  background: black;
 }
 
-.container {
-  width: 420px;
-  padding: 20px;
-  padding-bottom: 120px;
+/* FEED */
+#feed {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
 }
 
-h1 {
-  text-align: center;
-}
-
-/* CARD */
-#cardContainer {
+/* REELS */
+.reel {
+  height: 100vh;
+  width: 100%;
   position: relative;
-  height: 520px;
+  scroll-snap-align: start;
 }
 
-.card {
+.reel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* TEXT OVERLAY */
+.overlay {
   position: absolute;
-  width: 100%;
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(12px);
-  border-radius: 15px;
-  padding: 15px;
-  transition: 0.3s;
-  cursor: grab;
-  touch-action: none;
+  bottom: 80px;
+  left: 15px;
+  color: white;
 }
 
-.card img {
-  width: 100%;
-  border-radius: 10px;
+.overlay h2 {
+  margin: 0;
 }
 
-/* SWIPE */
-.swipe-left {
-  transform: translateX(-150%) rotate(-25deg);
-  opacity: 0;
+.overlay p {
+  margin: 5px 0;
 }
 
-.swipe-right {
-  transform: translateX(150%) rotate(25deg);
-  opacity: 0;
-}
-
-/* 🔥 TINDER STYLE ACTION BAR */
+/* BUTTONS */
 .actions {
   position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 10px;
+  bottom: 100px;
   display: flex;
+  flex-direction: column;
   gap: 15px;
 }
 
-/* SMALL BUTTON */
-.btn-small {
-  width: 50px;
-  height: 50px;
+.actions button {
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   border: none;
-  font-size: 18px;
-  cursor: pointer;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-}
-
-/* MAIN LIKE BUTTON */
-.btn-like {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  border: none;
-  font-size: 20px;
-  background: linear-gradient(135deg, #ff4d6d, #ff758f);
+  font-size: 16px;
+  background: rgba(255,255,255,0.2);
   color: white;
-  cursor: pointer;
-  box-shadow: 0 10px 30px rgba(255,0,80,0.5);
-  transition: 0.2s;
-}
-
-.btn-like:hover {
-  transform: scale(1.1);
-}
-
-/* SAVED */
-.saved-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-
-.saved-card {
-  background: #111;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.saved-card img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-/* LIKE ANIMATION */
-.like-anim {
-  animation: pop 0.3s ease;
-}
-
-@keyframes pop {
-  50% { transform: scale(1.4); }
 }
