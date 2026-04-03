@@ -1,14 +1,9 @@
-const names = [
-  "Samantha Lee", "Ava Sharma", "Elena Rossi",
-  "Mia Collins", "Sofia Verma"
-];
-
+const names = ["Samantha Lee", "Ava Sharma", "Elena Rossi", "Mia Collins"];
 const bios = [
   "✨ soft life | coffee",
   "🌸 dream life builder",
   "📍 italy lifestyle",
-  "💫 aesthetic vibes",
-  "🌿 slow living lover"
+  "💫 aesthetic vibes"
 ];
 
 const categories = [
@@ -38,7 +33,6 @@ function generateProfile() {
     id: Date.now(),
     name: random(names),
     bio: random(bios),
-    category: category,
     img: `https://loremflickr.com/400/500/${category}?random=${Math.random()}`,
     followers: randomNumber(1000, 100000)
   };
@@ -109,30 +103,57 @@ function renderSaved() {
   document.getElementById("saved").innerHTML = html;
 }
 
-/* DRAG SWIPE */
+/* MOBILE + DESKTOP DRAG */
 function enableDrag() {
   const card = document.getElementById("card");
 
   let startX = 0;
+  let currentX = 0;
+  let isDragging = false;
 
-  card.onmousedown = e => {
+  // TOUCH
+  card.addEventListener("touchstart", e => {
+    isDragging = true;
+    startX = e.touches[0].clientX;
+  });
+
+  card.addEventListener("touchmove", e => {
+    if (!isDragging) return;
+
+    currentX = e.touches[0].clientX;
+    let moveX = currentX - startX;
+
+    card.style.transform = `translateX(${moveX}px) rotate(${moveX/10}deg)`;
+  });
+
+  card.addEventListener("touchend", () => {
+    handleSwipe(currentX - startX);
+    isDragging = false;
+  });
+
+  // MOUSE
+  card.addEventListener("mousedown", e => {
+    isDragging = true;
     startX = e.clientX;
 
     document.onmousemove = e2 => {
-      let moveX = e2.clientX - startX;
+      currentX = e2.clientX;
+      let moveX = currentX - startX;
       card.style.transform = `translateX(${moveX}px) rotate(${moveX/10}deg)`;
     };
 
     document.onmouseup = e3 => {
-      let diff = e3.clientX - startX;
-
-      if (diff > 100) swipe("right");
-      else if (diff < -100) swipe("left");
-      else card.style.transform = "";
-
+      handleSwipe(e3.clientX - startX);
+      isDragging = false;
       document.onmousemove = null;
     };
-  };
+  });
+
+  function handleSwipe(diff) {
+    if (diff > 100) swipe("right");
+    else if (diff < -100) swipe("left");
+    else card.style.transform = "";
+  }
 }
 
 renderSaved();
