@@ -2,6 +2,8 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: black;
+  overflow: hidden;
+  touch-action: manipulation;
 }
 
 /* FEED */
@@ -11,7 +13,7 @@ body {
   scroll-snap-type: y mandatory;
 }
 
-/* REELS */
+/* EACH REEL */
 .reel {
   height: 100vh;
   width: 100%;
@@ -41,7 +43,7 @@ body {
   margin: 5px 0;
 }
 
-/* BUTTONS */
+/* FLOATING BUTTONS */
 .actions {
   position: fixed;
   right: 10px;
@@ -52,11 +54,13 @@ body {
 }
 
 .actions button {
-  width: 55px;
-  height: 55px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   border: none;
   font-size: 16px;
   background: rgba(255,255,255,0.2);
   color: white;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
 }
