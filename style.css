@@ -135,3 +135,61 @@ button:hover {
 .hidden {
   display: none;
 }
+
+/* CARD */
+#cardContainer {
+  position: relative;
+  height: 500px;
+}
+
+.card {
+  position: absolute;
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  transition: 0.4s;
+}
+
+/* SWIPE ANIMATIONS */
+.swipe-left {
+  transform: translateX(-150%) rotate(-20deg);
+  opacity: 0;
+}
+
+.swipe-right {
+  transform: translateX(150%) rotate(20deg);
+  opacity: 0;
+}
+
+/* ACTION BUTTONS */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.actions button {
+  flex: 1;
+  margin: 5px;
+}
+
+/* SAVED */
+.saved-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.saved-card {
+  background: #111;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.saved-card img {
+  width: 100%;
+  border-radius: 10px;
+}
