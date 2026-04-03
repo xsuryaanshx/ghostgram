@@ -24,7 +24,7 @@ function generateProfile() {
     id: Date.now(),
     name: random(names),
     bio: random(bios),
-    img: `https://source.unsplash.com/400x500/?portrait,${Math.random()}`,
+    img: `https://picsum.photos/400/500?random=${Math.random()}`,
     followers: randomNumber(1000, 100000)
   };
 }
@@ -45,14 +45,12 @@ function loadNewCard() {
   likes = 0;
   document.getElementById("likesCount").innerText = likes;
   document.getElementById("cardContainer").innerHTML = renderCard(currentProfile);
-
   enableDrag();
 }
 
 function swipe(direction) {
   const card = document.getElementById("card");
   card.classList.add(direction === "left" ? "swipe-left" : "swipe-right");
-
   setTimeout(loadNewCard, 300);
 }
 
@@ -93,7 +91,6 @@ function renderSaved() {
 /* DRAG SWIPE */
 function enableDrag() {
   const card = document.getElementById("card");
-
   let startX = 0;
 
   card.onmousedown = e => {
@@ -110,7 +107,7 @@ function enableDrag() {
       if (diff > 100) swipe("right");
       else if (diff < -100) swipe("left");
       else card.style.transform = "";
-      
+
       document.onmousemove = null;
     };
   };
