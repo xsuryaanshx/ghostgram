@@ -29,21 +29,14 @@ h1 {
   backdrop-filter: blur(12px);
   border-radius: 15px;
   padding: 15px;
-  transition: 0.4s;
+  transition: 0.3s;
   cursor: grab;
+  touch-action: none;
 }
 
 .card img {
   width: 100%;
   border-radius: 10px;
-}
-
-.card h2 {
-  margin: 10px 0 5px;
-}
-
-.card p {
-  margin: 5px 0;
 }
 
 /* SWIPE */
@@ -60,18 +53,16 @@ h1 {
 /* ACTIONS */
 .actions {
   display: flex;
-  justify-content: space-between;
+  gap: 5px;
   margin: 15px 0;
 }
 
 .actions button {
   flex: 1;
-  margin: 3px;
   padding: 10px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  font-size: 16px;
 }
 
 /* SAVED */
@@ -93,13 +84,11 @@ h1 {
   border-radius: 10px;
 }
 
-/* LIKE ANIMATION */
+/* LIKE */
 .like-anim {
   animation: pop 0.3s ease;
 }
 
 @keyframes pop {
-  0% { transform: scale(1); }
   50% { transform: scale(1.4); }
-  100% { transform: scale(1); }
 }
