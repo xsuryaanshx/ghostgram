@@ -9,19 +9,13 @@ const bios = [
 const categories = [
   "woman,portrait",
   "girl,instagram",
-  "fashion,model",
-  "lifestyle,woman"
+  "fashion,model"
 ];
 
 let likes = 0;
-let currentProfile = null;
 
 function random(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
-}
-
-function randomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
 }
 
 function generateProfile() {
@@ -30,15 +24,12 @@ function generateProfile() {
   return {
     name: random(names),
     bio: random(bios),
-    img: `https://loremflickr.com/400/700/${category}?random=${Math.random()}`,
-    followers: randomNumber(1000, 100000)
+    img: `https://loremflickr.com/400/700/${category}?random=${Math.random()}`
   };
 }
 
 function createReel() {
   const p = generateProfile();
-
-  currentProfile = p;
 
   const reel = document.createElement("div");
   reel.className = "reel";
@@ -48,7 +39,6 @@ function createReel() {
     <div class="overlay">
       <h2>${p.name} ✔</h2>
       <p>${p.bio}</p>
-      <p>👥 ${p.followers}</p>
     </div>
   `;
 
@@ -69,15 +59,14 @@ function like() {
 }
 
 function saveProfile() {
-  alert("Saved (demo)");
+  alert("Saved!");
 }
 
 function shareProfile() {
-  navigator.clipboard.writeText("GhostGram profile 🔥");
+  navigator.clipboard.writeText("GhostGram 🔥");
   alert("Copied!");
 }
 
-/* INFINITE SCROLL */
 document.getElementById("feed").addEventListener("scroll", () => {
   const feed = document.getElementById("feed");
 
