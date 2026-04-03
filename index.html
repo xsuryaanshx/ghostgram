@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Website Cloner</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+    input {
+      width: 400px;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      margin-right: 10px;
+    }
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #22c55e;
+      color: black;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    pre {
+      text-align: left;
+      background: #111827;
+      padding: 20px;
+      margin-top: 30px;
+      overflow-x: auto;
+      border-radius: 10px;
+      max-height: 400px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌐 Website Cloner (MVP)</h1>
+
+  <input id="urlInput" placeholder="Enter website URL (https://...)" />
+  <button onclick="cloneSite()">Clone</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    async function cloneSite() {
+      const url = document.getElementById("urlInput").value;
+
+      if (!url) {
+        alert("Enter URL");
+        return;
+      }
+
+      document.getElementById("output").textContent = "Loading...";
+
+      try {
+        const res = await fetch(`https://YOUR-RAILWAY-URL/clone?url=${encodeURIComponent(url)}`);
+        const data = await res.json();
+
+        document.getElementById("output").textContent =
+          "=== HTML ===\n\n" +
+          data.html.substring(0, 2000) +
+          "\n\n=== CSS FILES ===\n" +
+          data.css.join("\n") +
+          "\n\n=== JS FILES ===\n" +
+          data.js.join("\n");
+
+      } catch (err) {
+        document.getElementById("output").textContent = "Error: " + err.message;
+      }
+    }
+  </script>
+
+</body>
+</html>
