@@ -111,7 +111,6 @@ function enableDrag() {
   let currentX = 0;
   let isDragging = false;
 
-  // TOUCH
   card.addEventListener("touchstart", e => {
     isDragging = true;
     startX = e.touches[0].clientX;
@@ -119,10 +118,8 @@ function enableDrag() {
 
   card.addEventListener("touchmove", e => {
     if (!isDragging) return;
-
     currentX = e.touches[0].clientX;
     let moveX = currentX - startX;
-
     card.style.transform = `translateX(${moveX}px) rotate(${moveX/10}deg)`;
   });
 
@@ -131,7 +128,6 @@ function enableDrag() {
     isDragging = false;
   });
 
-  // MOUSE
   card.addEventListener("mousedown", e => {
     isDragging = true;
     startX = e.clientX;
