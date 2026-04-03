@@ -17,9 +17,11 @@
     <div id="cardContainer"></div>
 
     <div class="actions">
-      <button onclick="swipe('left')">❌ Skip</button>
-      <button onclick="saveProfile()">💾 Save</button>
-      <button onclick="swipe('right')">❤️ Like</button>
+      <button onclick="swipe('left')">❌</button>
+      <button onclick="like()">❤️ <span id="likesCount">0</span></button>
+      <button onclick="saveProfile()">💾</button>
+      <button onclick="shareProfile()">🔗</button>
+      <button onclick="swipe('right')">➡️</button>
     </div>
 
     <h2>Saved Profiles</h2>
