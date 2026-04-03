@@ -12,7 +12,7 @@ const categories = [
   "fashion,model"
 ];
 
-let likes = 0;
+let currentLikes = 0;
 
 function random(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -30,6 +30,10 @@ function generateProfile() {
 
 function createReel() {
   const p = generateProfile();
+
+  // reset likes for new reel
+  currentLikes = 0;
+  document.getElementById("likesCount").innerText = currentLikes;
 
   const reel = document.createElement("div");
   reel.className = "reel";
@@ -54,8 +58,11 @@ function loadInitial() {
 }
 
 function like() {
-  likes++;
-  document.getElementById("likesCount").innerText = likes;
+  // only 1 like per reel
+  if (currentLikes === 1) return;
+
+  currentLikes = 1;
+  document.getElementById("likesCount").innerText = currentLikes;
 }
 
 function saveProfile() {
@@ -67,6 +74,7 @@ function shareProfile() {
   alert("Copied!");
 }
 
+/* INFINITE SCROLL */
 document.getElementById("feed").addEventListener("scroll", () => {
   const feed = document.getElementById("feed");
 
