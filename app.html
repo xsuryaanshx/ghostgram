@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GhostGram App</title>
+  <title>GhostGram</title>
 
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -16,18 +16,19 @@
 
     <div id="cardContainer"></div>
 
-    <div class="actions">
-      <button onclick="swipe('left')">❌</button>
-      <button onclick="like()">❤️ <span id="likesCount">0</span></button>
-      <button onclick="saveProfile()">💾</button>
-      <button onclick="shareProfile()">🔗</button>
-      <button onclick="swipe('right')">➡️</button>
-    </div>
-
-    <h2>Saved Profiles</h2>
-    <div id="saved" class="saved-grid"></div>
-
   </div>
+
+  <!-- 🔥 TINDER STYLE BUTTONS -->
+  <div class="actions">
+    <button class="btn-small" onclick="swipe('left')">❌</button>
+    <button class="btn-like" onclick="like()">❤️ <span id="likesCount">0</span></button>
+    <button class="btn-small" onclick="saveProfile()">💾</button>
+    <button class="btn-small" onclick="shareProfile()">🔗</button>
+    <button class="btn-small" onclick="swipe('right')">➡️</button>
+  </div>
+
+  <h2 style="text-align:center;">Saved Profiles</h2>
+  <div id="saved" class="saved-grid"></div>
 
   <script src="script.js"></script>
 
