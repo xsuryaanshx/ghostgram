@@ -1,9 +1,21 @@
-const names = ["Samantha Lee", "Ava Sharma", "Elena Rossi", "Mia Collins"];
+const names = [
+  "Samantha Lee", "Ava Sharma", "Elena Rossi",
+  "Mia Collins", "Sofia Verma"
+];
+
 const bios = [
   "✨ soft life | coffee",
   "🌸 dream life builder",
   "📍 italy lifestyle",
-  "💫 aesthetic vibes"
+  "💫 aesthetic vibes",
+  "🌿 slow living lover"
+];
+
+const categories = [
+  "woman,portrait",
+  "girl,instagram",
+  "fashion,model",
+  "lifestyle,woman"
 ];
 
 let currentProfile = null;
@@ -20,11 +32,14 @@ function randomNumber(min, max) {
 }
 
 function generateProfile() {
+  const category = random(categories);
+
   return {
     id: Date.now(),
     name: random(names),
     bio: random(bios),
-    img: `https://picsum.photos/400/500?random=${Math.random()}`,
+    category: category,
+    img: `https://loremflickr.com/400/500/${category}?random=${Math.random()}`,
     followers: randomNumber(1000, 100000)
   };
 }
@@ -43,22 +58,27 @@ function renderCard(profile) {
 function loadNewCard() {
   currentProfile = generateProfile();
   likes = 0;
+
   document.getElementById("likesCount").innerText = likes;
   document.getElementById("cardContainer").innerHTML = renderCard(currentProfile);
+
   enableDrag();
 }
 
 function swipe(direction) {
   const card = document.getElementById("card");
   card.classList.add(direction === "left" ? "swipe-left" : "swipe-right");
+
   setTimeout(loadNewCard, 300);
 }
 
 function like() {
   likes++;
   const el = document.getElementById("likesCount");
+
   el.innerText = likes;
   el.classList.add("like-anim");
+
   setTimeout(() => el.classList.remove("like-anim"), 300);
 }
 
@@ -76,6 +96,7 @@ function shareProfile() {
 
 function renderSaved() {
   let html = "";
+
   savedProfiles.forEach(p => {
     html += `
       <div class="saved-card">
@@ -91,6 +112,7 @@ function renderSaved() {
 /* DRAG SWIPE */
 function enableDrag() {
   const card = document.getElementById("card");
+
   let startX = 0;
 
   card.onmousedown = e => {
